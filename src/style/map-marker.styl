@@ -1,0 +1,131 @@
+@import './functions';
+
+$scaleColors = linearScaleColors(5, 90, 70);
+
+$shadow-4 = 0 0 1px rgba(0,0,0,0.15),
+            0 0 2px rgba(0,0,0,0.15),
+            0 0 4px rgba(0,0,0,0.15),
+            0 0 8px rgba(0,0,0,0.15);
+
+$shadow-6 = 0 0 1px rgba(0,0,0,0.13),
+            0 0 2px rgba(0,0,0,0.13),
+            0 0 4px rgba(0,0,0,0.13),
+            0 0 8px rgba(0,0,0,0.13),
+            0 0 16px rgba(0,0,0,0.13),
+            0 0 32px rgba(0,0,0,0.13);
+
+$border = 1px solid rgba(0,0,0,0.5);
+
+// less than 100
+$cluster-marker-color-1 = $scaleColors[3];
+// less than 1000
+$cluster-marker-color-2 = $scaleColors[2];
+// greater than 1000
+$cluster-marker-color-3 = $scaleColors[1];
+
+$cluster-marker-size-1 = 30px;
+$cluster-marker-size-2 = 40px;
+$cluster-marker-size-3 = 50px;
+
+$pin-marker-red = #ff4040
+$pin-marker-gray = #c9c9c9;
+
+
+.map-cluster-marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  border-radius: 50%;
+  border: $border;
+  box-shadow: $shadow-4;
+  transition: box-shadow 0.5s;
+}
+
+.map-cluster-marker:hover {
+  box-shadow: $shadow-6;
+}
+
+.map-cluster-marker--1 {
+  background-color: $cluster-marker-color-1;
+  width: $cluster-marker-size-1;
+  height: $cluster-marker-size-1;
+}
+.map-cluster-marker--2 {
+  background-color: $cluster-marker-color-2;
+  width: $cluster-marker-size-2;
+  height: $cluster-marker-size-2;
+}
+.map-cluster-marker--3 {
+  background-color: $cluster-marker-color-3;
+  width: $cluster-marker-size-3;
+  height: $cluster-marker-size-3;
+}
+
+.map-pin-marker {
+  width: 20px;
+  height: 42px;
+  // Correct the position so that the shadow point is aligned with the coordinate point
+  padding-bottom: 35px;
+
+  svg {
+    position: relative;
+    top: 6px;
+    stroke: black;
+    stroke-width: 2px;
+    transition: fill 0.3s;
+    cursor: pointer;
+		// animation: hover 1.3s ease-in-out infinite alternate;
+	}
+
+  .shadow {
+    border-radius: 50%;
+    margin: 0 auto 0 auto;
+
+    filter: blur(1px);
+    background: rgba(0, 0, 0, .4);
+    width: 20px;
+    height: 6px;
+    // animation: shadow 1.3s ease-in-out infinite alternate;
+  }
+
+  @keyframes hover {
+    from {
+      transform: translate3d(0,0,0);
+    }
+    to {
+      transform: translate3d(0,-4px,0);
+    }
+  }
+
+  @keyframes shadow {
+    from {
+      transform: scale(0.4) translate3d(0,0,0);
+    }
+    to {
+      transform: scale(0.5) translate3d(0,0,0);
+    }
+  }
+}
+
+.map-pin-marker--red {
+  svg {
+    fill: $pin-marker-red;
+  }
+
+  svg:hover {
+    fill: lighten($pin-marker-red, 30%);
+  }
+}
+
+.map-pin-marker--gray {
+  svg {
+    fill: $pin-marker-gray;
+  }
+
+  svg:hover {
+    fill: lighten($pin-marker-gray, 30%);
+  }
+}
+

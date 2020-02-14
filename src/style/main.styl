@@ -1,0 +1,40 @@
+@import './variables';
+@import './map-marker';
+@import './override.styl';
+
+/* for v-cloak directive to hide component which is not ready yet. */
+[v-cloak] {
+  display: none;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  background-color: $def-bg-color;
+  color: $def-text-color;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+/* Vue transitions */
+.vue-trans-fade-enter {
+  opacity: 0;
+}
+.vue-trans-fade-enter-active {
+  transition: .2s;
+}
+.vue-trans-fade-leave {
+
+}
+.vue-trans-fade-leave-active {
+  transition: .2s;
+  opacity: 0;
+}
+
+/* Hide the popper when the reference is hidden */
+.tooltip[data-popper-reference-hidden] {
+  visibility: hidden;
+  pointer-events: none;
+}

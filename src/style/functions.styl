@@ -1,0 +1,16 @@
+// size: number
+// saturation: 0~100
+// lightness: 0~100
+// return: color array 1..5
+linearScaleColors(size, saturation, lightness) {
+  hueInterval = 360 / size;
+  colors = ();
+
+  hue = 0;
+  for num in (1..size) {
+    colors[num] = hsl(hue, saturation, lightness);
+    hue += hueInterval;
+  }
+
+  colors
+}
